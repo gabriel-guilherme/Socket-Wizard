@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arena dos Magos</title>
+    <style>
+      body {
+        font-family: Arial;
+        background: #222;
+        color: #fff;
+        text-align: center;
+      }
+      .hidden {
+        display: none;
+      }
+      canvas {
+        background: #333;
+        border: 2px solid #555;
+        cursor: crosshair;
+      }
+      .panel {
+        background: #444;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loginScreen" class="panel">
+      <h2>Entrar</h2>
+      <input type="text" id="usernameInput" placeholder="Usuário" /><br /><br />
+      <button onclick="login()">Jogar</button>
+    </div>
+
+    <div id="lobbyScreen" class="panel hidden">
+      <h2>Lobby</h2>
+      <div
+        id="chat"
+        style="
+          height: 100px;
+          overflow-y: scroll;
+          background: #222;
+          margin-bottom: 10px;
+          text-align: left;
+          padding: 5px;
+        "
+      ></div>
+      <input type="text" id="chatInput" placeholder="Mensagem" />
+      <button onclick="sendChat()">Enviar</button>
+      <hr />
+      <button onclick="createMatch()">Criar Partida</button>
+      <ul id="matchesList"></ul>
+    </div>
+
+    <div id="roomScreen" class="panel hidden">
+      <h2>Sala de Partida</h2>
+      <p>Aguardando oponentes...</p>
+      <button id="btnStart" class="hidden" onclick="startMatch()">
+        Iniciar Jogo
+      </button>
+    </div>
+
+    <div id="gameScreen" class="hidden">
+      <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  </body>
+</html>
